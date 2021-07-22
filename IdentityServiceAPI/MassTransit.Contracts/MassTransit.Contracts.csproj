@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Calabonga.Microservices.Core" Version="3.0.3" />
+    <PackageReference Include="MassTransit" Version="7.2.1" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.1" />
+    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+  </ItemGroup>
+
+</Project>

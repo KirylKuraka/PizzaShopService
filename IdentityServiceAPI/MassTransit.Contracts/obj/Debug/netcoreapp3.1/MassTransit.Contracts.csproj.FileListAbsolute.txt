@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\bin\Debug\netcoreapp3.1\MassTransit.Contracts.deps.json
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\bin\Debug\netcoreapp3.1\MassTransit.Contracts.dll
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\bin\Debug\netcoreapp3.1\MassTransit.Contracts.pdb
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\obj\Debug\netcoreapp3.1\MassTransit.Contracts.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\obj\Debug\netcoreapp3.1\MassTransit.Contracts.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\obj\Debug\netcoreapp3.1\MassTransit.Contracts.AssemblyInfo.cs
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\obj\Debug\netcoreapp3.1\MassTransit.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\obj\Debug\netcoreapp3.1\MassTransit.Contracts.dll
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\MassTransit.Contracts\obj\Debug\netcoreapp3.1\MassTransit.Contracts.pdb
