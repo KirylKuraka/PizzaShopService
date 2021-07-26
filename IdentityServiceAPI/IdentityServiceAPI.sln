@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountAPI", "PersonalAccountAPI\PersonalAccountAPI.csproj", "{31AF1CC5-1D60-4EEC-8A40-24892FC8A677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.Contracts", "MassTransit.Contracts\MassTransit.Contracts.csproj", "{1E3D5D62-2DF5-4D27-B209-93B6CBCC59D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Contracts", "MassTransit.Contracts\MassTransit.Contracts.csproj", "{1E3D5D62-2DF5-4D27-B209-93B6CBCC59D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductAPI", "ProductAPI\ProductAPI.csproj", "{6866D559-09D0-4D9A-A6AC-6CEF4B17BD28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{1E3D5D62-2DF5-4D27-B209-93B6CBCC59D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E3D5D62-2DF5-4D27-B209-93B6CBCC59D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E3D5D62-2DF5-4D27-B209-93B6CBCC59D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6866D559-09D0-4D9A-A6AC-6CEF4B17BD28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6866D559-09D0-4D9A-A6AC-6CEF4B17BD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6866D559-09D0-4D9A-A6AC-6CEF4B17BD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6866D559-09D0-4D9A-A6AC-6CEF4B17BD28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

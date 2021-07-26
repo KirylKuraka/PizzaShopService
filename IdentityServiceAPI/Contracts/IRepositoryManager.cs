@@ -8,6 +8,8 @@ namespace Contracts
     public interface IRepositoryManager
     {
         IAccountRepository AccountRepository { get; }
+        IProductRepository ProductRepository { get; }
+        IProductTypeRepository ProductTypeRepository { get; }
         Task SaveAsync();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Entities.RequestFeatures.Parameters;
 using MassTransit;
 using MassTransit.Contracts.TransferObjects;
 using Microsoft.AspNetCore.Mvc;

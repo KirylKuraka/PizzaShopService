@@ -19,6 +19,8 @@ namespace Entities
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductTypeConfiguration());
         }
 
         public DbSet<Account> Accounts { get; set; }

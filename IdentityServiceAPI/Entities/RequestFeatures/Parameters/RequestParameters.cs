@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.RequestFeatures
+namespace Entities.RequestFeatures.Parameters
 {
     public abstract class RequestParameters
     {

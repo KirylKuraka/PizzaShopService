@@ -2,6 +2,7 @@
 using Entities;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Entities.RequestFeatures.Parameters;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
