@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using System.Threading.Tasks;
 using MassTransit.Contracts;
 using MassTransit.Contracts.TransferObjects;
+using PersonalAccountAPI.MassTransit;
 
 namespace PersonalAccountAPI
 {
@@ -46,7 +47,7 @@ namespace PersonalAccountAPI
                 ServiceName = "Accounts",
                 Configurator = bus =>
                 {
-                    bus.AddRequestClient<UserRequest>();
+                    bus.AddConsumer<AccountConsumer>();
                 }
             });
         }

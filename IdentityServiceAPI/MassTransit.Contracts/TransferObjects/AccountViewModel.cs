@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MassTransit.Contracts.TransferObjects
 {
-    public class UserViewModel
+    public class AccountViewModel
     {
         public Guid UserID { get; set; }
 

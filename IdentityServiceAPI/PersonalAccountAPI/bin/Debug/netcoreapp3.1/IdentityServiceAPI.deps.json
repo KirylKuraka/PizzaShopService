@@ -29,17 +29,16 @@
   },
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "PersonalAccountAPI/1.0.0": {
+      "IdentityServiceAPI/1.0.0": {
         "dependencies": {
-          "Contracts": "1.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "Entities": "1.0.0",
-          "IdentityServiceAPI": "1.0.0",
           "LoggerService": "1.0.0",
           "MassTransit.Contracts": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.16",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.16",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.16",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.10.14",
-          "Repository": "1.0.0",
           "Swashbuckle.AspNetCore": "6.1.4",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
@@ -304,10 +303,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "PersonalAccountAPI.dll": {}
+          "IdentityServiceAPI.dll": {}
         },
         "compile": {
-          "PersonalAccountAPI.dll": {}
+          "IdentityServiceAPI.dll": {}
         }
       },
       "AutoMapper/10.1.1": {
@@ -2096,24 +2095,6 @@
           "Entities.dll": {}
         }
       },
-      "IdentityServiceAPI/1.0.0": {
-        "dependencies": {
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
-          "Entities": "1.0.0",
-          "LoggerService": "1.0.0",
-          "MassTransit.Contracts": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.16",
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.16",
-          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.10.14",
-          "Swashbuckle.AspNetCore": "6.1.4"
-        },
-        "runtime": {
-          "IdentityServiceAPI.dll": {}
-        },
-        "compile": {
-          "IdentityServiceAPI.dll": {}
-        }
-      },
       "LoggerService/1.0.0": {
         "dependencies": {
           "Contracts": "1.0.0",
@@ -2141,18 +2122,6 @@
         },
         "compile": {
           "MassTransit.Contracts.dll": {}
-        }
-      },
-      "Repository/1.0.0": {
-        "dependencies": {
-          "Contracts": "1.0.0",
-          "Entities": "1.0.0"
-        },
-        "runtime": {
-          "Repository.dll": {}
-        },
-        "compile": {
-          "Repository.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -3724,7 +3693,7 @@
     }
   },
   "libraries": {
-    "PersonalAccountAPI/1.0.0": {
+    "IdentityServiceAPI/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4894,22 +4863,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "IdentityServiceAPI/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "LoggerService/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "MassTransit.Contracts/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Repository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

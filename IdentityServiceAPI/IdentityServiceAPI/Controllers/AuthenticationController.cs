@@ -2,6 +2,8 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using MassTransit;
+using MassTransit.Contracts.TransferObjects;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,13 +22,15 @@ namespace IdentityServiceAPI.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IAuthenticationManager _authManager;
+        private readonly IRequestClient<AccountRequest> _requestClient;
 
-        public AuthenticationController(ILoggerManager loggerManager, IMapper mapper , UserManager<User> userManager, IAuthenticationManager authManager)
+        public AuthenticationController(ILoggerManager loggerManager, IMapper mapper , UserManager<User> userManager, IAuthenticationManager authManager, IRequestClient<AccountRequest> requestClient)
         {
             _loggerManager = loggerManager;
             _mapper = mapper;
             _userManager = userManager;
             _authManager = authManager;
+            _requestClient = requestClient;
         }
 
         [HttpPost]
@@ -59,6 +63,16 @@ namespace IdentityServiceAPI.Controllers
 
                 return Unauthorized();
             }
+
+            var tempUser = await _userManager.FindByNameAsync(user.UserName);
+            var model = new AccountViewModel
+            {
+                UserID = Guid.Parse(tempUser.Id),
+                UserName = tempUser.UserName,
+                PhoneNumber = tempUser.PhoneNumber,
+                Email = tempUser.Email
+            };
+            var response = await _requestClient.GetResponse<AccountResponse>(new AccountRequest { AccountModel = model });
 
             return Ok(new
             {

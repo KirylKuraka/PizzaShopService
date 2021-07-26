@@ -2,6 +2,33 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "AutoMapper/10.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "System.Reflection.Emit": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.dll": {}
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.1": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "[10.1.1, 11.0.0)",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.0.0",
+          "Microsoft.Extensions.Options": "3.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Automatonymous/5.1.1": {
         "type": "package",
         "dependencies": {
@@ -101,6 +128,21 @@
         "runtime": {
           "lib/netstandard2.0/MassTransit.RabbitMqTransport.dll": {}
         }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.16": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.5.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.16": {
         "type": "package",
@@ -2424,6 +2466,29 @@
           "bin/placeholder/Entities.dll": {}
         }
       },
+      "IdentityServiceAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
+          "Entities": "1.0.0",
+          "LoggerService": "1.0.0",
+          "MassTransit.Contracts": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.16",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.16",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.10.14",
+          "Swashbuckle.AspNetCore": "6.1.4"
+        },
+        "compile": {
+          "bin/placeholder/IdentityServiceAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/IdentityServiceAPI.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "LoggerService/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -2474,6 +2539,35 @@
     }
   },
   "libraries": {
+    "AutoMapper/10.1.1": {
+      "sha512": "uMgbqOdu9ZG5cIOty0C85hzzayBH2i9BthnS5FlMqKtMSHDv4ts81a2jS1VFaDBVhlBeIqJ/kQKjQY95BZde9w==",
+      "type": "package",
+      "path": "automapper/10.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.10.1.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/net461/AutoMapper.dll",
+        "lib/net461/AutoMapper.xml",
+        "lib/netstandard2.0/AutoMapper.dll",
+        "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.1": {
+      "sha512": "xSWoVzOipuDU4PeZcUfaZQ+xqXU8QmGv5jrdlxt3MYm9xaOmrefqcfzGQ3SQ+D+8wfBa/ZwSuL0qKOVj080inA==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/8.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
     "Automatonymous/5.1.1": {
       "sha512": "Cyzi+JrQ0f2GF9ouy2DptdCPQVGrWSl0oFI//GokvKilgjaffuGd/jm0nZ+iKS1M7aPP2/I2E41216N+pEGAgw==",
       "type": "package",
@@ -2569,6 +2663,21 @@
         "masstransit.rabbitmq.7.2.1.nupkg.sha512",
         "masstransit.rabbitmq.nuspec",
         "mt-logo-small.png"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.16": {
+      "sha512": "gBcYMUrYaF95fhKIPP8024E7eT7xSCthT1RHPdGd44ZJ1+ttnWebIWWu3YEdju58eleMPVyKie2TZbHkoxSNDw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.16",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.3.1.16.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.16": {
@@ -8270,6 +8379,11 @@
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
     },
+    "IdentityServiceAPI/1.0.0": {
+      "type": "project",
+      "path": "../IdentityServiceAPI/IdentityServiceAPI.csproj",
+      "msbuildProject": "../IdentityServiceAPI/IdentityServiceAPI.csproj"
+    },
     "LoggerService/1.0.0": {
       "type": "project",
       "path": "../LoggerService/LoggerService.csproj",
@@ -8290,6 +8404,7 @@
     ".NETCoreApp,Version=v3.1": [
       "Contracts >= 1.0.0",
       "Entities >= 1.0.0",
+      "IdentityServiceAPI >= 1.0.0",
       "LoggerService >= 1.0.0",
       "MassTransit.Contracts >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.16",
@@ -8331,6 +8446,9 @@
             },
             "C:\\Users\\user\\Desktop\\Projects\\PizzaOnlineShop\\IdentityServiceAPI\\Entities\\Entities.csproj": {
               "projectPath": "C:\\Users\\user\\Desktop\\Projects\\PizzaOnlineShop\\IdentityServiceAPI\\Entities\\Entities.csproj"
+            },
+            "C:\\Users\\user\\Desktop\\Projects\\PizzaOnlineShop\\IdentityServiceAPI\\IdentityServiceAPI\\IdentityServiceAPI.csproj": {
+              "projectPath": "C:\\Users\\user\\Desktop\\Projects\\PizzaOnlineShop\\IdentityServiceAPI\\IdentityServiceAPI\\IdentityServiceAPI.csproj"
             },
             "C:\\Users\\user\\Desktop\\Projects\\PizzaOnlineShop\\IdentityServiceAPI\\LoggerService\\LoggerService.csproj": {
               "projectPath": "C:\\Users\\user\\Desktop\\Projects\\PizzaOnlineShop\\IdentityServiceAPI\\LoggerService\\LoggerService.csproj"

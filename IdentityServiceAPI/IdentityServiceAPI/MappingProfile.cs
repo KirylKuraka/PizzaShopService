@@ -14,7 +14,6 @@ namespace IdentityServiceAPI
         public MappingProfile()
         {
             CreateMap<UserForRegistrationDTO, User>();
-            CreateMap<UserViewModel, User>();
         }
     }
 }

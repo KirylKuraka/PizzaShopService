@@ -4,8 +4,8 @@ using System.Text;
 
 namespace MassTransit.Contracts.TransferObjects
 {
-    public class UserResponse
+    public class AccountResponse
     {
-        public UserViewModel User { get; set; }
+        public bool ResponseResult { get; set; }
     }
 }

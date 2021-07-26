@@ -17,7 +17,7 @@ using LoggerService;
 using NLog;
 using Contracts;
 using MassTransit.Contracts;
-using IdentityServiceAPI.MassTransit;
+using MassTransit.Contracts.TransferObjects;
 
 namespace IdentityServiceAPI
 {
@@ -56,7 +56,7 @@ namespace IdentityServiceAPI
                 ServiceName = "Identity",
                 Configurator = bus =>
                 {
-                    bus.AddConsumer<UserConsumer>();
+                    bus.AddRequestClient<AccountRequest>();
                 }
             });
         }

@@ -17,37 +17,13 @@ namespace PersonalAccountAPI.Controllers
 
     public class AccountController : Controller
     {
-        private readonly IRequestClient<UserRequest> _requestClient;
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
 
-        public AccountController(IRequestClient<UserRequest> requestClient, IRepositoryManager repository, ILoggerManager logger)
+        public AccountController(IRepositoryManager repository, ILoggerManager logger)
         {
-            _requestClient = requestClient;
             _repository = repository;
             _logger = logger;
-        }
-
-        [HttpGet("index/{id}")]
-        public async Task<RedirectToActionResult> Index(Guid id)
-        {
-            var response = await _requestClient.GetResponse<UserResponse>(new UserRequest { UserID = id});
-            var user = response.Message.User;
-
-            if (await _repository.AccountRepository.GetAccountAsync(user.UserID, trackChanges: false) == null)
-            {
-                _repository.AccountRepository.CreateAccount(new Account
-                {
-                    UserID = user.UserID,
-                    UserName = user.UserName,
-                    Email = user.Email,
-                    PhoneNumber = user.PhoneNumber
-                });
-
-                await _repository.SaveAsync();
-            }
-
-            return RedirectToActionPermanent("GetAccount", new { id = user.UserID });
         }
 
         [HttpGet(Name = "GetAccounts")]
