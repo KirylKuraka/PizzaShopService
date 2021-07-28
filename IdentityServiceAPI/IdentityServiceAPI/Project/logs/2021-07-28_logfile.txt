@@ -1,0 +1,5 @@
+2021-07-28 14:45:37.3468 WARN Authenticate: Authentication failed. Wrong user name or password.
+2021-07-28 14:46:02.7879 INFO info
+2021-07-28 14:46:02.7879 DEBUG debug
+2021-07-28 14:46:02.7971 WARN warn
+2021-07-28 14:46:02.7971 ERROR error
