@@ -28,70 +28,81 @@ namespace ProductAPI.Controllers
         }
 
         [HttpGet(Name = "GetProducts")]
-        public async Task<IActionResult> GetProducts([FromQuery] ProductParameters parameters)
+        public async Task<IEnumerable<Product>> GetProducts([FromQuery] ProductParameters parameters)
         {
             var products = await _repository.ProductRepository.GetProductsAsync(parameters, trackChanges: false);
 
-            return Ok(products);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.MetaData));
+
+            return products;
         }
 
         [HttpGet("{id}", Name = "ProductById")]
-        public async Task<IActionResult> GetProduct(Guid id)
+        public async Task<Product> GetProduct(Guid id)
         {
             var product = await _repository.ProductRepository.GetProductAsync(id, trackChanges: false);
             if (product == null)
             {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
+                _logger.LogInfo($"Product with id: {id} doesn't exist in the database.");
+                return null;
             }
             else
             {
-                return Ok(product);
+                return product;
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct([FromBody] Product product)
+        public async Task<string> CreateProduct([FromBody] Product product)
         {
-            var productEntity = _mapper.Map<Product>(product);
-            _repository.ProductRepository.CreateProduct(productEntity);
-            await _repository.SaveAsync();
+            try
+            {
+                var productEntity = _mapper.Map<Product>(product);
+                _repository.ProductRepository.CreateProduct(productEntity);
+                await _repository.SaveAsync();
 
-            return StatusCode(201);
+                return "Product was created";
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"{e.Message}");
+                return $"{e.Message}";
+            }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(Guid id)
+        public async Task<string> DeleteProduct(Guid id)
         {
             var product = await _repository.ProductRepository.GetProductAsync(id, false);
 
             if (product == null)
             {
-                _logger.LogInfo($"Product type with id: {id} doesn't exist in database");
-                return NotFound();
+                _logger.LogInfo($"Product with id: {id} doesn't exist in database");
+                return $"Product with id: {id} doesn't exist in database";
             }
 
             _repository.ProductRepository.DeleteProduct(product);
 
             await _repository.SaveAsync();
 
-            return NoContent();
+            return "Product was deleted";
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct([FromBody] Product product)
+        public async Task<string> UpdateProduct(Guid id, [FromBody] Product product)
         {
-            if (await _repository.ProductRepository.GetProductAsync(product.ProductID, trackChanges: false) != null)
+            if (await _repository.ProductRepository.GetProductAsync(id, trackChanges: false) != null)
             {
                 _repository.ProductRepository.UpdateProduct(product);
 
                 await _repository.SaveAsync();
 
-                return Ok("Account was updated");
+                return "Product was updated";
             }
             else
             {
-                return NotFound($"Account with id {product.ProductID} doesn't exist in the database");
+                _logger.LogInfo($"Product with id: {id} doesn't exist in database");
+                return $"Product with id: {id} doesn't exist in database";
             }
         }
     }

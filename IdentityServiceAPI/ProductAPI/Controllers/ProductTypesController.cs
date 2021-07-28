@@ -29,72 +29,81 @@ namespace ProductAPI.Controllers
         }
 
         [HttpGet(Name = "GetProductTypes")]
-        public async Task<IActionResult> GetProductTypes([FromQuery] ProductTypeParameters parameters)
+        public async Task<IEnumerable<ProductType>> GetProductTypes([FromQuery] ProductTypeParameters parameters)
         {
             var productTypes = await _repository.ProductTypeRepository.GetProductTypesAsync(parameters, trackChanges: false);
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(productTypes.MetaData));
 
-            return Ok(productTypes);
+            return productTypes;
         }
 
         [HttpGet("{id}", Name = "ProductTypeById")]
-        public async Task<IActionResult> GetProductType(Guid id)
+        public async Task<ProductType> GetProductType(Guid id)
         {
             var productType = await _repository.ProductTypeRepository.GetProductTypeAsync(id, trackChanges: false);
             if (productType == null)
             {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
+                _logger.LogInfo($"Prodcut type with id: {id} doesn't exist in the database.");
+                return null;
             }
             else
             {
-                return Ok(productType);
+                return productType;
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProductType([FromBody] ProductType productType)
+        public async Task<string> CreateProductType([FromBody] ProductType productType)
         {
-            var productTypeEntity = _mapper.Map<ProductType>(productType);
-            _repository.ProductTypeRepository.CreateProductType(productTypeEntity);
-            await _repository.SaveAsync();
+            try
+            {
+                var productTypeEntity = _mapper.Map<ProductType>(productType);
+                _repository.ProductTypeRepository.CreateProductType(productTypeEntity);
+                await _repository.SaveAsync();
 
-            return StatusCode(201);
+                return "Product type was created";
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"{e.Message}");
+                return $"{e.Message}";
+            }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProductType(Guid id)
+        public async Task<string> DeleteProductType(Guid id)
         {
             var productType = await _repository.ProductTypeRepository.GetProductTypeAsync(id, false);
 
             if (productType == null)
             {
                 _logger.LogInfo($"Product type with id: {id} doesn't exist in database");
-                return NotFound();
+                return $"Product type with id: {id} doesn't exist in database";
             }
 
             _repository.ProductTypeRepository.DeleteProductType(productType);
 
             await _repository.SaveAsync();
 
-            return NoContent();
+            return "Prodcut type was deleted";
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProductType([FromBody] ProductType productType)
+        public async Task<string> UpdateProductType(Guid id, [FromBody] ProductType productType)
         {
-            if (await _repository.ProductTypeRepository.GetProductTypeAsync(productType.ProductTypeID, trackChanges: false) != null)
+            if (await _repository.ProductTypeRepository.GetProductTypeAsync(id, trackChanges: false) != null)
             {
                 _repository.ProductTypeRepository.UpdateProductType(productType);
 
                 await _repository.SaveAsync();
 
-                return Ok("Account was updated");
+                return "Prodcut type was updated";
             }
             else
             {
-                return NotFound($"Account with id {productType.ProductTypeID} doesn't exist in the database");
+                _logger.LogInfo($"Product type with id {id} doesn't exist in the database");
+                return $"Product type with id {id} doesn't exist in the database";
             }
         }
     }

@@ -19,7 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
-    <ProjectReference Include="..\IdentityServiceAPI\IdentityServiceAPI.csproj" />
     <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
     <ProjectReference Include="..\MassTransit.Contracts\MassTransit.Contracts.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />

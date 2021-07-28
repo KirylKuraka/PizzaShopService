@@ -28,32 +28,32 @@ namespace PersonalAccountAPI.Controllers
         }
 
         [HttpGet(Name = "GetAccounts")]
-        public async Task<IActionResult> GetAccounts([FromQuery] AccountParameters parameters)
+        public async Task<IEnumerable<Account>> GetAccounts([FromQuery] AccountParameters parameters)
         {
             var accounts = await _repository.AccountRepository.GetAccountsAsync(parameters, trackChanges: false);
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(accounts.MetaData));
 
-            return Ok(accounts);
+            return accounts;
         }
 
         [HttpGet("{id}", Name = "AccountById")]
-        public async Task<IActionResult> GetAccount(Guid id)
+        public async Task<Account> GetAccount(Guid id)
         {
             var account = await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false);
             if (account == null)
             {
                 _logger.LogInfo($"Account with id: {id} doesn't exist in the database.");
-                return NotFound();
+                return null;
             }
             else
             {
-                return Ok(account);
+                return account;
             }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAccount(Guid id)
+        public async Task<string> DeleteAccount(Guid id)
         {
             var account = await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false);
 
@@ -63,44 +63,46 @@ namespace PersonalAccountAPI.Controllers
 
                 await _repository.SaveAsync();
 
-                return NoContent();
+                return "Account was deleted";
             }
             else
             {
-                return NotFound($"Account with id {id} doesn't exist in the database");
+                _logger.LogInfo($"Account with id: {id} doesn't exist in database");
+                return $"Account with id {id} doesn't exist in the database";
             }
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateAccount([FromBody] Account account)
+        [HttpPut("{id}")]
+        public async Task<string> UpdateAccount(Guid id, [FromBody] Account account)
         {
-            if (await _repository.AccountRepository.GetAccountAsync(account.UserID, trackChanges: false) != null)
+            if (await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false) != null)
             {
                 _repository.AccountRepository.UpdateAccount(account);
 
                 await _repository.SaveAsync();
 
-                return Ok("Account was updated");
+                return "Account was updated";
             }
             else
             {
-                return NotFound($"Account with id {account.UserID} doesn't exist in the database");
+                _logger.LogInfo($"Account with id {id} doesn't exist in the database");
+                return $"Account with id {id} doesn't exist in the database";
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAccount([FromBody] Account account)
+        public async Task<string> CreateAccount([FromBody] Account account)
         {
             if (await _repository.AccountRepository.GetAccountAsync(account.UserID, trackChanges: false) == null)
             {
                 _repository.AccountRepository.CreateAccount(account);
 
                 await _repository.SaveAsync();
-                return Ok("Account was created");
+                return "Account was created";
             }
             else
             {
-                return NotFound($"Account with id {account.UserID} is already exist");
+                return $"Account with id {account.UserID} is already exist";
             }
         }
     }

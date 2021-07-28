@@ -1,0 +1,12 @@
+2021-07-28 09:37:27.0490 INFO Product type with id: 3fa85f64-5717-4562-b3fc-2c963f66afa6 doesn't exist in database
+2021-07-28 09:37:56.7209 INFO Product type with id: 3fa85f64-5717-4562-b3fc-2c963f66afa6 doesn't exist in database
+2021-07-28 09:37:57.5270 INFO Product type with id: 3fa85f64-5717-4562-b3fc-2c963f66afa6 doesn't exist in database
+2021-07-28 09:37:58.1192 INFO Product type with id: 3fa85f64-5717-4562-b3fc-2c963f66afa6 doesn't exist in database
+2021-07-28 09:38:10.3467 INFO Product type with id: 3fa85f64-5717-4562-b3fc-2c963f66afa6 doesn't exist in database
+2021-07-28 09:48:05.3941 INFO Product with id: cdc545f4-79c0-45fd-8b4f-cc6b97404555 doesn't exist in database
+2021-07-28 09:49:18.5667 INFO Product with id: cdc545f4-78c0-45fd-8b4f-cc6b97404555 doesn't exist in database
+2021-07-28 09:49:25.7695 INFO Product with id: cdc545f4-78c0-45fd-8b4f-cc6b97404555 doesn't exist in the database.
+2021-07-28 09:50:01.3279 ERROR An error An error occurred while updating the entries. See the inner exception for details. occurred during creation new Product
+2021-07-28 09:56:51.7985 INFO Product type with id: 3fa85f64-5717-4562-b3fc-2c963f66afa6 doesn't exist in database
+2021-07-28 09:56:56.5507 INFO Product type with id 3fa85f64-5717-4562-b3fc-2c963f66afa6 doesn't exist in the database
+2021-07-28 09:57:01.3763 INFO Company with id: 3fa85f64-5717-4562-b3fc-2c963f66afa6 doesn't exist in the database.
