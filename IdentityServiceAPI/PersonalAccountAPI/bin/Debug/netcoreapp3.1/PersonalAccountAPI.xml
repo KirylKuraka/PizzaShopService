@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PersonalAccountAPI</name>
+    </assembly>
+    <members>
+        <member name="M:PersonalAccountAPI.Controllers.AccountController.GetAccounts(Entities.RequestFeatures.Parameters.AccountParameters)">
+            <summary>
+            Get the list of Accounts
+            </summary>
+            <param name="parameters">Input parameters such as page size and page number</param>
+            <returns>The list of Accounts</returns>
+        </member>
+        <member name="M:PersonalAccountAPI.Controllers.AccountController.GetAccount(System.Guid)">
+            <summary>
+            Get Account record by Id
+            </summary>
+            <param name="id">Account id</param>
+            <returns>Account record</returns>
+        </member>
+        <member name="M:PersonalAccountAPI.Controllers.AccountController.GetPersonalAccount">
+            <summary>
+            Get Customer Account record by Id
+            </summary>
+            <param name="id">Account id</param>
+            <returns>Account record</returns>
+        </member>
+        <member name="M:PersonalAccountAPI.Controllers.AccountController.DeleteAccount(System.Guid)">
+            <summary>
+            Delete Account record
+            </summary>
+            <param name="id">Account id</param>
+            <returns>String message about execution status</returns>
+        </member>
+        <member name="M:PersonalAccountAPI.Controllers.AccountController.UpdateAccount(System.Guid,Entities.Models.Account)">
+            <summary>
+            Update Account record
+            </summary>
+            <param name="id">Account id</param>
+            <param name="account">Account data</param>
+            <returns>String message about execution status</returns>
+        </member>
+        <member name="M:PersonalAccountAPI.Controllers.AccountController.CreateAccount(Entities.Models.Account)">
+            <summary>
+            Create new Account record
+            </summary>
+            <param name="account">Account data for creation</param>
+            <returns>String message about execution status</returns>
+        </member>
+    </members>
+</doc>

@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using MassTransit.Contracts;
 using MassTransit.Contracts.TransferObjects;
 using PersonalAccountAPI.MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace PersonalAccountAPI
 {
@@ -38,6 +39,7 @@ namespace PersonalAccountAPI
             services.ConfigureRepositoryManager();
 
             services.AddControllers();
+            services.ConfigureJWT(Configuration);
 
             services.ConfigureSwagger();
 
@@ -79,6 +81,7 @@ namespace PersonalAccountAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

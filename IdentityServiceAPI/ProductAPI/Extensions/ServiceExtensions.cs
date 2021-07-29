@@ -9,7 +9,9 @@ using Microsoft.OpenApi.Models;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ProductAPI.Extensions
@@ -38,6 +40,10 @@ namespace ProductAPI.Extensions
         {
             services.AddSwaggerGen(s => {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "Account API", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                s.IncludeXmlComments(xmlPath);
             });
         }
 

@@ -250,3 +250,4 @@ C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\IdentityServic
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\IdentityServiceAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\IdentityServiceAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\IdentityServiceAPI\obj\Debug\netcoreapp3.1\IdentityServiceAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\IdentityServiceAPI\bin\Debug\netcoreapp3.1\IdentityServiceAPI.xml

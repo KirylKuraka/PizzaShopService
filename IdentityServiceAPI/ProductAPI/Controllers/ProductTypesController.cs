@@ -28,6 +28,11 @@ namespace ProductAPI.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get the list of all ProductTypes
+        /// </summary>
+        /// <param name="parameters">Input parameters such as page size and page number</param>
+        /// <returns>The list of ProductTypes</returns>
         [HttpGet(Name = "GetProductTypes")]
         public async Task<IEnumerable<ProductType>> GetProductTypes([FromQuery] ProductTypeParameters parameters)
         {
@@ -38,6 +43,11 @@ namespace ProductAPI.Controllers
             return productTypes;
         }
 
+        /// <summary>
+        /// Get the ProductType record
+        /// </summary>
+        /// <param name="id">ProductType id</param>
+        /// <returns>ProductType record</returns>
         [HttpGet("{id}", Name = "ProductTypeById")]
         public async Task<ProductType> GetProductType(Guid id)
         {
@@ -53,6 +63,11 @@ namespace ProductAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Create new ProdcutType record
+        /// </summary>
+        /// <param name="productType">ProductType for creation</param>
+        /// <returns>String message about execution status</returns>
         [HttpPost]
         public async Task<string> CreateProductType([FromBody] ProductType productType)
         {
@@ -71,6 +86,11 @@ namespace ProductAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete ProductType record
+        /// </summary>
+        /// <param name="id">ProductType id</param>
+        /// <returns>String message about execution status</returns>
         [HttpDelete("{id}")]
         public async Task<string> DeleteProductType(Guid id)
         {
@@ -89,6 +109,12 @@ namespace ProductAPI.Controllers
             return "Prodcut type was deleted";
         }
 
+        /// <summary>
+        /// Update ProductType record
+        /// </summary>
+        /// <param name="id">ProductType id</param>
+        /// <param name="productType">ProductType data</param>
+        /// <returns>String message about execution status</returns>
         [HttpPut("{id}")]
         public async Task<string> UpdateProductType(Guid id, [FromBody] ProductType productType)
         {

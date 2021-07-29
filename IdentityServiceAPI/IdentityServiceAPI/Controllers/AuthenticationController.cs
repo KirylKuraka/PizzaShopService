@@ -33,6 +33,11 @@ namespace IdentityServiceAPI.Controllers
             _requestClient = requestClient;
         }
 
+        /// <summary>
+        /// Register new user
+        /// </summary>
+        /// <param name="userForRegistration">User info for registration</param>
+        /// <returns>Request status</returns>
         [HttpPost]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDTO userForRegistration)
         {
@@ -54,6 +59,28 @@ namespace IdentityServiceAPI.Controllers
             //return StatusCode(201);
         }
 
+        /// <summary>
+        /// Log in
+        /// </summary>
+        /// <remarks>
+        /// Sample login (Admin):
+        ///
+        ///     POST authentication/login
+        ///     {
+        ///       "userName": "Andrew2255",
+        ///       "password": "Qwerty123456789"
+        ///     }
+        ///
+        /// Sample login (Customer):
+        ///
+        ///     POST authentication/login
+        ///     {
+        ///       "userName": "Simple_Gy",
+        ///       "password": "Qwerty123456789"
+        ///     }
+        /// </remarks>
+        /// <param name="user">User info for authentication</param>
+        /// <returns>Request status</returns>
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDTO user)
         {

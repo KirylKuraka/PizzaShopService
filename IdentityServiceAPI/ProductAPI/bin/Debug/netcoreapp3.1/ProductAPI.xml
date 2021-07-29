@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProductAPI</name>
+    </assembly>
+    <members>
+        <member name="M:ProductAPI.Controllers.ProductsController.GetProducts(Entities.RequestFeatures.Parameters.ProductParameters)">
+            <summary>
+            Get the list of Products
+            </summary>
+            <param name="parameters">Input parameters such as page size and page number</param>
+            <returns>The list of Products</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.GetProduct(System.Guid)">
+            <summary>
+            Get an Product record by id
+            </summary>
+            <param name="id">Product id</param>
+            <returns>Product record</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.CreateProduct(Entities.Models.Product)">
+            <summary>
+            Create new Product record
+            </summary>
+            <param name="product">Product record for creation</param>
+            <returns>String message about execution status</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.DeleteProduct(System.Guid)">
+            <summary>
+            Delete Product record
+            </summary>
+            <param name="id">Product id</param>
+            <returns>String message about execution status</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.UpdateProduct(System.Guid,Entities.Models.Product)">
+            <summary>
+            Update Prodcut record
+            </summary>
+            <param name="id">Prodcut id</param>
+            <param name="product">Product data</param>
+            <returns>String message about execution status</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductTypesController.GetProductTypes(Entities.RequestFeatures.Parameters.ProductTypeParameters)">
+            <summary>
+            Get the list of all ProductTypes
+            </summary>
+            <param name="parameters">Input parameters such as page size and page number</param>
+            <returns>The list of ProductTypes</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductTypesController.GetProductType(System.Guid)">
+            <summary>
+            Get the ProductType record
+            </summary>
+            <param name="id">ProductType id</param>
+            <returns>ProductType record</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductTypesController.CreateProductType(Entities.Models.ProductType)">
+             <summary>
+             Create new ProdcutType record
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST productType
+                 {
+                   "productTypeID": "80ba375d-08b6-4f05-a4d2-cd8193ee6571",
+                   "lastName": "TypeName",
+                 }
+             </remarks>
+             <param name="productType">ProductType for creation</param>
+             <returns>String message about execution status</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductTypesController.DeleteProductType(System.Guid)">
+            <summary>
+            Delete ProductType record
+            </summary>
+            <param name="id">ProductType id</param>
+            <returns>String message about execution status</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductTypesController.UpdateProductType(System.Guid,Entities.Models.ProductType)">
+            <summary>
+            Update ProductType record
+            </summary>
+            <param name="id">ProductType id</param>
+            <param name="productType">ProductType data</param>
+            <returns>String message about execution status</returns>
+        </member>
+    </members>
+</doc>

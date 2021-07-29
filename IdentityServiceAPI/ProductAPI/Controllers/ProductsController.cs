@@ -27,6 +27,11 @@ namespace ProductAPI.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get the list of Products
+        /// </summary>
+        /// <param name="parameters">Input parameters such as page size and page number</param>
+        /// <returns>The list of Products</returns>
         [HttpGet(Name = "GetProducts")]
         public async Task<IEnumerable<Product>> GetProducts([FromQuery] ProductParameters parameters)
         {
@@ -37,6 +42,11 @@ namespace ProductAPI.Controllers
             return products;
         }
 
+        /// <summary>
+        /// Get an Product record by id
+        /// </summary>
+        /// <param name="id">Product id</param>
+        /// <returns>Product record</returns>
         [HttpGet("{id}", Name = "ProductById")]
         public async Task<Product> GetProduct(Guid id)
         {
@@ -52,6 +62,11 @@ namespace ProductAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Create new Product record
+        /// </summary>
+        /// <param name="product">Product record for creation</param>
+        /// <returns>String message about execution status</returns>
         [HttpPost]
         public async Task<string> CreateProduct([FromBody] Product product)
         {
@@ -70,6 +85,11 @@ namespace ProductAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete Product record
+        /// </summary>
+        /// <param name="id">Product id</param>
+        /// <returns>String message about execution status</returns>
         [HttpDelete("{id}")]
         public async Task<string> DeleteProduct(Guid id)
         {
@@ -88,6 +108,12 @@ namespace ProductAPI.Controllers
             return "Product was deleted";
         }
 
+        /// <summary>
+        /// Update Product record
+        /// </summary>
+        /// <param name="id">Product id</param>
+        /// <param name="product">Product data</param>
+        /// <returns>String message about execution status</returns>
         [HttpPut("{id}")]
         public async Task<string> UpdateProduct(Guid id, [FromBody] Product product)
         {

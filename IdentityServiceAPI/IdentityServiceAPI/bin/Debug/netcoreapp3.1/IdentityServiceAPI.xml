@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdentityServiceAPI</name>
+    </assembly>
+    <members>
+        <member name="M:IdentityServiceAPI.Controllers.AuthenticationController.RegisterUser(Entities.DataTransferObjects.UserForRegistrationDTO)">
+            <summary>
+            Register new user
+            </summary>
+            <param name="userForRegistration">User info for registration</param>
+            <returns>Request status</returns>
+        </member>
+        <member name="M:IdentityServiceAPI.Controllers.AuthenticationController.Authenticate(Entities.DataTransferObjects.UserForAuthenticationDTO)">
+             <summary>
+             Log in
+             </summary>
+             <remarks>
+             Sample login (Admin):
+            
+                 POST authentication/login
+                 {
+                   "userName": "Andrew2255",
+                   "password": "Qwerty123456789"
+                 }
+            
+             Sample login (Customer):
+            
+                 POST authentication/login
+                 {
+                   "userName": "Simple_Gy",
+                   "password": "Qwerty123456789"
+                 }
+             </remarks>
+             <param name="user">User info for authentication</param>
+             <returns>Request status</returns>
+        </member>
+    </members>
+</doc>

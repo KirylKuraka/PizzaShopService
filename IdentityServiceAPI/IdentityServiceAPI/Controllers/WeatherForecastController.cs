@@ -20,7 +20,7 @@ namespace IdentityServiceAPI.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetValues"), Authorize]
+        [HttpGet(Name = "GetValues"), Authorize(Roles = "Customer")]
         public IEnumerable<string> GetValues()
         {
             _logger.LogInfo("info");

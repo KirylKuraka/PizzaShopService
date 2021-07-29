@@ -53,7 +53,8 @@ namespace IdentityServiceAPI
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, _user.UserName)
+                new Claim(ClaimTypes.Name, _user.UserName),
+                new Claim(ClaimTypes.NameIdentifier, _user.Id)
             };
 
             var roles = await _userManager.GetRolesAsync(_user);
@@ -68,10 +69,10 @@ namespace IdentityServiceAPI
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");
-            var tokenOptions = new JwtSecurityToken(issuer: jwtSettings.GetSection("validIssuer").Value, 
-                                                    audience: jwtSettings.GetSection("validAudience").Value, 
-                                                    claims: claims, 
-                                                    expires: DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings.GetSection("expires").Value)), 
+            var tokenOptions = new JwtSecurityToken(issuer: jwtSettings.GetSection("validIssuer").Value,
+                                                    audience: jwtSettings.GetSection("validAudience").Value,
+                                                    claims: claims,
+                                                    expires: DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings.GetSection("expires").Value)),
                                                     signingCredentials: signingCredentials);
 
             return tokenOptions;
