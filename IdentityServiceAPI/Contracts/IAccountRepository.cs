@@ -10,7 +10,7 @@ namespace Contracts
 {
     public interface IAccountRepository
     {
-        Task<PagedList<Account>> GetAccountsAsync(AccountParameters parameters, bool trackChanges);
+        Task<List<Account>> GetAccountsAsync(AccountParameters parameters, bool trackChanges);
         Task<Account> GetAccountAsync(Guid accountID, bool trackChanges);
         void CreateAccount(Account account);
         void UpdateAccount(Account account);

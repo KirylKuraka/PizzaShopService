@@ -46,6 +46,10 @@ namespace PersonalAccountAPI.Migrations
                     b.Property<float>("PromotionalPoins")
                         .HasColumnType("real");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(60)")
@@ -64,6 +68,7 @@ namespace PersonalAccountAPI.Migrations
                             LastName = "Курако",
                             PhoneNumber = "+375447045348",
                             PromotionalPoins = 5f,
+                            Role = "Admin - Customer",
                             UserName = "WhiteFox"
                         });
                 });

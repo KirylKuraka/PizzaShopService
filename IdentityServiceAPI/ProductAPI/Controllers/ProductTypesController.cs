@@ -38,7 +38,7 @@ namespace ProductAPI.Controllers
         {
             var productTypes = await _repository.ProductTypeRepository.GetProductTypesAsync(parameters, trackChanges: false);
 
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(productTypes.MetaData));
+            //Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(productTypes.MetaData));
 
             return productTypes;
         }

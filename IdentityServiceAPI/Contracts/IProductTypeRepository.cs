@@ -10,7 +10,7 @@ namespace Contracts
 {
     public interface IProductTypeRepository
     {
-        Task<PagedList<ProductType>> GetProductTypesAsync(ProductTypeParameters parameters, bool trackChanges);
+        Task<List<ProductType>> GetProductTypesAsync(ProductTypeParameters parameters, bool trackChanges);
         Task<ProductType> GetProductTypeAsync(Guid id, bool trackChanges);
         void CreateProductType(ProductType productType);
         void UpdateProductType(ProductType productType);

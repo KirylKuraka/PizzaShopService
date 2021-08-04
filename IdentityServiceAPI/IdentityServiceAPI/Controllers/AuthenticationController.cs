@@ -92,12 +92,14 @@ namespace IdentityServiceAPI.Controllers
             }
 
             var tempUser = await _userManager.FindByNameAsync(user.UserName);
+            List<string> roles = (List<string>)await _userManager.GetRolesAsync(tempUser);
             var model = new AccountViewModel
             {
                 UserID = Guid.Parse(tempUser.Id),
                 UserName = tempUser.UserName,
                 PhoneNumber = tempUser.PhoneNumber,
-                Email = tempUser.Email
+                Email = tempUser.Email,
+                Role = roles.Count > 1 ? String.Join(" - ", roles.ToArray()) : roles[0]
             };
             var response = await _requestClient.GetResponse<AccountResponse>(new AccountRequest { AccountModel = model });
 

@@ -34,9 +34,9 @@
         </member>
         <member name="M:ProductAPI.Controllers.ProductsController.UpdateProduct(System.Guid,Entities.Models.Product)">
             <summary>
-            Update Prodcut record
+            Update Product record
             </summary>
-            <param name="id">Prodcut id</param>
+            <param name="id">Product id</param>
             <param name="product">Product data</param>
             <returns>String message about execution status</returns>
         </member>
@@ -55,20 +55,11 @@
             <returns>ProductType record</returns>
         </member>
         <member name="M:ProductAPI.Controllers.ProductTypesController.CreateProductType(Entities.Models.ProductType)">
-             <summary>
-             Create new ProdcutType record
-             </summary>
-             <remarks>
-             Sample request:
-            
-                 POST productType
-                 {
-                   "productTypeID": "80ba375d-08b6-4f05-a4d2-cd8193ee6571",
-                   "lastName": "TypeName",
-                 }
-             </remarks>
-             <param name="productType">ProductType for creation</param>
-             <returns>String message about execution status</returns>
+            <summary>
+            Create new ProdcutType record
+            </summary>
+            <param name="productType">ProductType for creation</param>
+            <returns>String message about execution status</returns>
         </member>
         <member name="M:ProductAPI.Controllers.ProductTypesController.DeleteProductType(System.Guid)">
             <summary>

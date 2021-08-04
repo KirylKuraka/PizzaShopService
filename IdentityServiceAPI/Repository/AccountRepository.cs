@@ -15,11 +15,12 @@ namespace Repository
     {
         public AccountRepository(RepositoryContext repositoryContext) : base(repositoryContext) { }
 
-        public async Task<PagedList<Account>> GetAccountsAsync(AccountParameters parameters, bool trackChanges)
+        public async Task<List<Account>> GetAccountsAsync(AccountParameters parameters, bool trackChanges)
         {
             var accounts = await FindAll(trackChanges).ToListAsync();
 
-            return PagedList<Account>.ToPagedList(accounts, parameters.PageNumber, parameters.PageSize);
+            //return PagedList<Account>.ToPagedList(accounts, parameters.PageNumber, parameters.PageSize);
+            return accounts;
         }
 
         public async Task<Account> GetAccountAsync(Guid accountID, bool trackChanges) =>

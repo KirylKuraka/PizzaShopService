@@ -18,13 +18,14 @@ namespace Repository
         {
         }
 
-        public async Task<PagedList<ProductType>> GetProductTypesAsync(ProductTypeParameters parameters, bool trackChanges)
+        public async Task<List<ProductType>> GetProductTypesAsync(ProductTypeParameters parameters, bool trackChanges)
         {
             var productTypes = await FindAll(trackChanges)
                                 .OrderBy(c => c.ProductTypeName)
                                 .ToListAsync();
 
-            return PagedList<ProductType>.ToPagedList(productTypes, parameters.PageNumber, parameters.PageSize);
+            //return PagedList<ProductType>.ToPagedList(productTypes, parameters.PageNumber, parameters.PageSize);
+            return productTypes;
         }
 
         public async Task<ProductType> GetProductTypeAsync(Guid id, bool trackChanges) =>

@@ -10,3 +10,8 @@
 2021-07-29 10:24:13.7520 DEBUG debug
 2021-07-29 10:24:13.7520 WARN warn
 2021-07-29 10:24:13.7520 ERROR error
+2021-07-29 15:22:12.2616 WARN Authenticate: Authentication failed. Wrong user name or password.
+2021-07-29 16:43:50.6200 WARN Authenticate: Authentication failed. Wrong user name or password.
+2021-07-29 16:43:53.5525 WARN Authenticate: Authentication failed. Wrong user name or password.
+2021-07-29 16:43:54.3788 WARN Authenticate: Authentication failed. Wrong user name or password.
+2021-07-29 16:55:32.3702 WARN Authenticate: Authentication failed. Wrong user name or password.

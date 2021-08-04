@@ -18,6 +18,7 @@ namespace PersonalAccountAPI.Controllers
 {
     [Route("/account")]
     [ApiExplorerSettings(GroupName = "v1")]
+    [Authorize]
 
     public class AccountController : Controller
     {
@@ -43,7 +44,7 @@ namespace PersonalAccountAPI.Controllers
         {
             var accounts = await _repository.AccountRepository.GetAccountsAsync(parameters, trackChanges: false);
 
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(accounts.MetaData));
+            //Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(accounts.MetaData));
 
             return accounts;
         }
@@ -75,10 +76,10 @@ namespace PersonalAccountAPI.Controllers
         /// <param name="id">Account id</param>
         /// <returns>Account record</returns>
         [HttpGet]
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "Customer, Admin")]
         public async Task<Account> GetPersonalAccount()
         {
-            Guid id = Guid.Parse(User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            Guid id = Guid.Parse(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
             var account = await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false);
             if (account == null)
@@ -149,7 +150,7 @@ namespace PersonalAccountAPI.Controllers
         /// <param name="account">Account data for creation</param>
         /// <returns>String message about execution status</returns>
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<string> CreateAccount([FromBody] Account account)
         {
             if (await _repository.AccountRepository.GetAccountAsync(account.UserID, trackChanges: false) == null)

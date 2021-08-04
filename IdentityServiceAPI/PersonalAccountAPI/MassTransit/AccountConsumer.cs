@@ -33,17 +33,18 @@ namespace PersonalAccountAPI.MassTransit
                     UserID = account.UserID,
                     UserName = account.UserName,
                     Email = account.Email,
-                    PhoneNumber = account.PhoneNumber
+                    PhoneNumber = account.PhoneNumber,
+                    Role = account.Role
                 };
 
                 if (await _repository.AccountRepository.GetAccountAsync(account.UserID, trackChanges: false) == null)
                 {
                     _repository.AccountRepository.CreateAccount(temp);
                 }
-                else
+                /*else
                 {
                     _repository.AccountRepository.UpdateAccount(temp);
-                }
+                }*/
 
                 await _repository.SaveAsync();
                 responseResult = true;

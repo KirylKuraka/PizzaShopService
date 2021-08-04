@@ -21,7 +21,8 @@ namespace Entities.Configuration
                     UserName = "WhiteFox",
                     Email = "whitefox@yandex.ru",
                     PhoneNumber = "+375447045348",
-                    PromotionalPoins = 5f
+                    PromotionalPoins = 5f,
+                    Role = "Admin - Customer"
                 }
             );
         }
