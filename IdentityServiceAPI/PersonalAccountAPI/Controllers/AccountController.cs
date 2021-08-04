@@ -25,12 +25,14 @@ namespace PersonalAccountAPI.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private IConfiguration _configuration;
+        private readonly IRequestClient<AccountRequest> _requestClient;
 
-        public AccountController(IRepositoryManager repository, ILoggerManager logger, IConfiguration configuration)
+        public AccountController(IRepositoryManager repository, ILoggerManager logger, IConfiguration configuration, IRequestClient<AccountRequest> requestClient)
         {
             _repository = repository;
             _logger = logger;
             _configuration = configuration;
+            _requestClient = requestClient;
         }
 
         /// <summary>
@@ -100,22 +102,33 @@ namespace PersonalAccountAPI.Controllers
         /// <returns>String message about execution status</returns>
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<string> DeleteAccount(Guid id)
+        public async Task<IActionResult> DeleteAccount(Guid id)
         {
             var account = await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false);
 
             if (account != null)
             {
+                var model = new AccountViewModel
+                {
+                    UserID = account.UserID,
+                    UserName = account.UserName,
+                    PhoneNumber = account.PhoneNumber,
+                    Email = account.Email,
+                    Role = account.Role,
+                    Operation = "DELETE"
+                };
+                var response = await _requestClient.GetResponse<AccountResponse>(new AccountRequest { AccountModel = model });
+
                 _repository.AccountRepository.DeleteAccount(account);
 
                 await _repository.SaveAsync();
 
-                return "Account was deleted";
+                return Ok("Account was deleted");
             }
             else
             {
                 _logger.LogInfo($"Account with id: {id} doesn't exist in database");
-                return $"Account with id {id} doesn't exist in the database";
+                return NotFound($"Account with id {id} doesn't exist in the database");
             }
         }
 
@@ -127,7 +140,7 @@ namespace PersonalAccountAPI.Controllers
         /// <returns>String message about execution status</returns>
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<string> UpdateAccount(Guid id, [FromBody] Account account)
+        public async Task<IActionResult> UpdateAccount(Guid id, [FromBody] Account account)
         {
             if (await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false) != null)
             {
@@ -135,12 +148,12 @@ namespace PersonalAccountAPI.Controllers
 
                 await _repository.SaveAsync();
 
-                return "Account was updated";
+                return Ok("Account was updated");
             }
             else
             {
                 _logger.LogInfo($"Account with id {id} doesn't exist in the database");
-                return $"Account with id {id} doesn't exist in the database";
+                return NotFound($"Account with id {id} doesn't exist in the database");
             }
         }
 
@@ -151,18 +164,18 @@ namespace PersonalAccountAPI.Controllers
         /// <returns>String message about execution status</returns>
         [HttpPost]
         [Authorize(Roles = "SuperAdmin")]
-        public async Task<string> CreateAccount([FromBody] Account account)
+        public async Task<IActionResult> CreateAccount([FromBody] Account account)
         {
             if (await _repository.AccountRepository.GetAccountAsync(account.UserID, trackChanges: false) == null)
             {
                 _repository.AccountRepository.CreateAccount(account);
 
                 await _repository.SaveAsync();
-                return "Account was created";
+                return Ok("Account was created");
             }
             else
             {
-                return $"Account with id {account.UserID} is already exist";
+                return BadRequest($"Account with id {account.UserID} is already exist");
             }
         }
     }

@@ -41,10 +41,6 @@ namespace PersonalAccountAPI.MassTransit
                 {
                     _repository.AccountRepository.CreateAccount(temp);
                 }
-                /*else
-                {
-                    _repository.AccountRepository.UpdateAccount(temp);
-                }*/
 
                 await _repository.SaveAsync();
                 responseResult = true;

@@ -15,5 +15,7 @@ namespace MassTransit.Contracts.TransferObjects
         public string PhoneNumber { get; set; }
 
         public string Role { get; set; }
+
+        public string Operation { get; set; }
     }
 }

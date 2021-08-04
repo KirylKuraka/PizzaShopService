@@ -18,6 +18,7 @@ using NLog;
 using Contracts;
 using MassTransit.Contracts;
 using MassTransit.Contracts.TransferObjects;
+using IdentityServiceAPI.MassTransit;
 
 namespace IdentityServiceAPI
 {
@@ -57,8 +58,9 @@ namespace IdentityServiceAPI
                 Configurator = bus =>
                 {
                     bus.AddRequestClient<AccountRequest>();
+                    bus.AddConsumer<IdentityConsumer>();
                 }
-            });
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -76,6 +77,45 @@ namespace IdentityServiceAPI
                                                     signingCredentials: signingCredentials);
 
             return tokenOptions;
+        }
+
+        public string GenerateRefreshToken()
+        {
+            return Guid.NewGuid().ToString();
+        }
+
+        public string GenerateRefreshToken(int size = 32)
+        {
+            var refreshToken = new byte[size];
+            using (var rnd = RandomNumberGenerator.Create())
+            {
+                rnd.GetBytes(refreshToken);
+
+                return Convert.ToBase64String(refreshToken);
+            }
+        }
+
+        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        {
+            var jwtSettings = _configuration.GetSection("JwtSettings");
+            var secretKey = jwtSettings.GetSection("ServerSecret").Value;
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+            };
+
+            SecurityToken securityToken;
+            var principal = new JwtSecurityTokenHandler().ValidateToken(token, tokenValidationParameters, out securityToken);
+
+            if ((securityToken as JwtSecurityToken) == null)
+                throw new SecurityTokenException("Invalid token");
+
+            return principal;
         }
     }
 }

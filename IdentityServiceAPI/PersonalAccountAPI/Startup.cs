@@ -50,6 +50,7 @@ namespace PersonalAccountAPI
                 Configurator = bus =>
                 {
                     bus.AddConsumer<AccountConsumer>();
+                    bus.AddRequestClient<AccountRequest>();
                 }
             });
         }
