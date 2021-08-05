@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.Models;
 using Entities.RequestFeatures.Parameters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -48,6 +49,7 @@ namespace ProductAPI.Controllers
         /// <param name="id">Product id</param>
         /// <returns>Product record</returns>
         [HttpGet("{id}", Name = "ProductById")]
+        [Authorize(Roles = "Admin")]
         public async Task<Product> GetProduct(Guid id)
         {
             var product = await _repository.ProductRepository.GetProductAsync(id, trackChanges: false);
@@ -68,6 +70,7 @@ namespace ProductAPI.Controllers
         /// <param name="product">Product record for creation</param>
         /// <returns>String message about execution status</returns>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<string> CreateProduct([FromBody] Product product)
         {
             try
@@ -91,6 +94,7 @@ namespace ProductAPI.Controllers
         /// <param name="id">Product id</param>
         /// <returns>String message about execution status</returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<string> DeleteProduct(Guid id)
         {
             var product = await _repository.ProductRepository.GetProductAsync(id, false);
@@ -115,6 +119,7 @@ namespace ProductAPI.Controllers
         /// <param name="product">Product data</param>
         /// <returns>String message about execution status</returns>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<string> UpdateProduct(Guid id, [FromBody] Product product)
         {
             if (await _repository.ProductRepository.GetProductAsync(id, trackChanges: false) != null)

@@ -1,24 +1,17 @@
+using Contracts;
+using IdentityServiceAPI.Authentication;
 using IdentityServiceAPI.Extensions;
+using IdentityServiceAPI.MassTransit;
+using MassTransit.Contracts;
+using MassTransit.Contracts.TransferObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using LoggerService;
 using NLog;
-using Contracts;
-using MassTransit.Contracts;
-using MassTransit.Contracts.TransferObjects;
-using IdentityServiceAPI.MassTransit;
+using System.IO;
 
 namespace IdentityServiceAPI
 {

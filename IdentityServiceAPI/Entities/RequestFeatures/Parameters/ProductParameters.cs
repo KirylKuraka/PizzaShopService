@@ -6,5 +6,6 @@ namespace Entities.RequestFeatures.Parameters
 {
     public class ProductParameters : RequestParameters
     {
+        public string FilterTerm { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Entities.Models;
 using Entities.RequestFeatures;
 using Entities.RequestFeatures.Parameters;
 using Microsoft.EntityFrameworkCore;
+using Repository.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Repository
         {
             var products = await FindAll(trackChanges)
                                 .Include(e => e.ProductType)
+                                .Filter(parameters.FilterTerm)
                                 .OrderBy(c => c.ProductName)
                                 .ToListAsync();
 

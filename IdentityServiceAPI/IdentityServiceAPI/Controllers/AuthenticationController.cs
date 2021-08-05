@@ -106,7 +106,7 @@ namespace IdentityServiceAPI.Controllers
             return Ok(new
             {
                 Token = await _authManager.CreateToken(),
-                RefreshToken = _authManager.GenerateRefreshToken()
+                RefreshToken = _authManager.GenerateRefreshToken(32)
             });
         }
     }
