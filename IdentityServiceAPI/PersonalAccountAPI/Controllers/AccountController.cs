@@ -144,6 +144,17 @@ namespace PersonalAccountAPI.Controllers
         {
             if (await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false) != null)
             {
+                var model = new AccountViewModel
+                {
+                    UserID = account.UserID,
+                    UserName = account.UserName,
+                    PhoneNumber = account.PhoneNumber,
+                    Email = account.Email,
+                    Role = account.Role,
+                    Operation = "UPDATE"
+                };
+                var response = await _requestClient.GetResponse<AccountResponse>(new AccountRequest { AccountModel = model });
+
                 _repository.AccountRepository.UpdateAccount(account);
 
                 await _repository.SaveAsync();

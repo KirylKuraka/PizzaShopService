@@ -36,7 +36,7 @@ namespace IdentityServiceAPI.MassTransit
                         case "DELETE":
                             await _userManager.DeleteAsync(user);
                             break;
-                        case "UDPATE":
+                        case "UPDATE":
                             user.Email = message.Email;
                             user.UserName = message.UserName;
                             user.PhoneNumber = message.PhoneNumber;
