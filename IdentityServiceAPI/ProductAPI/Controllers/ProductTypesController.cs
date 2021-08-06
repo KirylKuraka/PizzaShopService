@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.Models;
 using Entities.RequestFeatures.Parameters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -49,12 +50,13 @@ namespace ProductAPI.Controllers
         /// <param name="id">ProductType id</param>
         /// <returns>ProductType record</returns>
         [HttpGet("{id}", Name = "ProductTypeById")]
+        [Authorize(Roles = "Admin")]
         public async Task<ProductType> GetProductType(Guid id)
         {
             var productType = await _repository.ProductTypeRepository.GetProductTypeAsync(id, trackChanges: false);
             if (productType == null)
             {
-                _logger.LogInfo($"Prodcut type with id: {id} doesn't exist in the database.");
+                _logger.LogInfo($"Product type with id: {id} doesn't exist in the database.");
                 return null;
             }
             else
@@ -69,6 +71,7 @@ namespace ProductAPI.Controllers
         /// <param name="productType">ProductType for creation</param>
         /// <returns>String message about execution status</returns>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<string> CreateProductType([FromBody] ProductType productType)
         {
             try
@@ -92,6 +95,7 @@ namespace ProductAPI.Controllers
         /// <param name="id">ProductType id</param>
         /// <returns>String message about execution status</returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<string> DeleteProductType(Guid id)
         {
             var productType = await _repository.ProductTypeRepository.GetProductTypeAsync(id, false);
@@ -106,7 +110,7 @@ namespace ProductAPI.Controllers
 
             await _repository.SaveAsync();
 
-            return "Prodcut type was deleted";
+            return "Product type was deleted";
         }
 
         /// <summary>
@@ -116,6 +120,7 @@ namespace ProductAPI.Controllers
         /// <param name="productType">ProductType data</param>
         /// <returns>String message about execution status</returns>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<string> UpdateProductType(Guid id, [FromBody] ProductType productType)
         {
             if (await _repository.ProductTypeRepository.GetProductTypeAsync(id, trackChanges: false) != null)
@@ -124,7 +129,7 @@ namespace ProductAPI.Controllers
 
                 await _repository.SaveAsync();
 
-                return "Prodcut type was updated";
+                return "Product type was updated";
             }
             else
             {

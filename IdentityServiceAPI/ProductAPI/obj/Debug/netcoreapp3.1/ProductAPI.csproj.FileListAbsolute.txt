@@ -85,3 +85,4 @@ C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\ProductAPI\bin
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\ProductAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\ProductAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\ProductAPI\bin\Debug\netcoreapp3.1\ProductAPI.xml
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\ProductAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

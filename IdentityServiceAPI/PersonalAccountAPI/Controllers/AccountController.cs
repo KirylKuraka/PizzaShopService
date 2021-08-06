@@ -139,12 +139,13 @@ namespace PersonalAccountAPI.Controllers
         /// <param name="account">Account data</param>
         /// <returns>String message about execution status</returns>
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public async Task<IActionResult> UpdateAccount(Guid id, [FromBody] Account account)
         {
-            if (await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false) != null)
+            var user = await _repository.AccountRepository.GetAccountAsync(id, trackChanges: false);
+            if (user != null)
             {
-                var model = new AccountViewModel
+                AccountViewModel model = new AccountViewModel
                 {
                     UserID = account.UserID,
                     UserName = account.UserName,
@@ -153,6 +154,16 @@ namespace PersonalAccountAPI.Controllers
                     Role = account.Role,
                     Operation = "UPDATE"
                 };
+
+                if (account.Role.Split(" - ").Contains("Admin"))
+                {
+                    model.Role = account.Role;
+                }
+                else
+                {
+                    model.Role = user.Role;
+                }
+
                 var response = await _requestClient.GetResponse<AccountResponse>(new AccountRequest { AccountModel = model });
 
                 _repository.AccountRepository.UpdateAccount(account);

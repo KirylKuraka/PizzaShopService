@@ -34,6 +34,8 @@ namespace ProductAPI
             services.ConfigureRepositoryManager();
             services.AddAutoMapper(typeof(Startup));
 
+            services.ConfigureJWT(Configuration);
+
             services.ConfigureSwagger();
 
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -68,6 +70,7 @@ namespace ProductAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
