@@ -22,7 +22,6 @@ namespace Entities.Configuration
                     Email = "whitefox@yandex.ru",
                     PhoneNumber = "+375447045348",
                     PromotionalPoins = 5f,
-                    Role = "Admin - Customer"
                 }
             );
         }

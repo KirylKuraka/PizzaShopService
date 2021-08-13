@@ -155,15 +155,6 @@ namespace PersonalAccountAPI.Controllers
                     Operation = "UPDATE"
                 };
 
-                if (account.Role.Split(" - ").Contains("Admin"))
-                {
-                    model.Role = account.Role;
-                }
-                else
-                {
-                    model.Role = user.Role;
-                }
-
                 var response = await _requestClient.GetResponse<AccountResponse>(new AccountRequest { AccountModel = model });
 
                 _repository.AccountRepository.UpdateAccount(account);

@@ -72,6 +72,7 @@ namespace PersonalAccountAPI.Migrations
                             UserName = "WhiteFox"
                         });
                 });
+
 #pragma warning restore 612, 618
         }
     }

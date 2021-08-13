@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.DataTransferObjects;
+using Entities.Models;
 
 namespace Contracts
 {
@@ -13,7 +14,7 @@ namespace Contracts
         Task<string> CreateToken();
         string GenerateRefreshToken();
         string GenerateRefreshToken(int size);
-
+        void SetUser(User user);
         ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
     }
 }

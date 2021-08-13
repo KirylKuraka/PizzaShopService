@@ -53,6 +53,7 @@ namespace IdentityServiceAPI.Extensions
             });
 
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
+            builder.AddTokenProvider("IdentityServiceAPI", typeof(DataProtectorTokenProvider<User>));
             builder.AddEntityFrameworkStores<RepositoryContext>().AddDefaultTokenProviders();
         }
 

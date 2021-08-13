@@ -33,6 +33,11 @@ namespace IdentityServiceAPI.Authentication
             return (_user != null && await _userManager.CheckPasswordAsync(_user, userForAuth.Password));
         }
 
+        public void SetUser(User user)
+        {
+            _user = user;
+        }
+
         public async Task<string> CreateToken()
         {
             var signingCredentials = GetSigningCredentials();
@@ -61,8 +66,10 @@ namespace IdentityServiceAPI.Authentication
             var roles = await _userManager.GetRolesAsync(_user);
             foreach (var role in roles)
             {
-                claims.Add(new Claim(ClaimTypes.Role, role));
+                claims.Add(new Claim("role", role));
             }
+
+            claims.Add(new Claim("isAdmin", roles.IndexOf("Admin") != -1 ? "true" : "false"));
 
             return claims;
         }
@@ -102,9 +109,9 @@ namespace IdentityServiceAPI.Authentication
 
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = false,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
             };

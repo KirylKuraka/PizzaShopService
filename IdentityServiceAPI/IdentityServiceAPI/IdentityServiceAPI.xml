@@ -35,5 +35,20 @@
              <param name="user">User info for authentication</param>
              <returns>Request status</returns>
         </member>
+        <member name="M:IdentityServiceAPI.Controllers.AuthenticationController.GetUserRoles(System.String)">
+            <summary>
+            Get user roles by userID
+            </summary>
+            <param name="id">User id</param>
+            <returns>All roles that was assigned to user</returns>
+        </member>
+        <member name="M:IdentityServiceAPI.Controllers.AuthenticationController.CheckUsername(System.Guid,System.String)">
+            <summary>
+            Сhecks for the existence of the user name
+            </summary>
+            <param name="id">User id for excluding a specific user</param>
+            <param name="userName">Username to check</param>
+            <returns>true - exits, false - doesn't exist</returns>
+        </member>
     </members>
 </doc>

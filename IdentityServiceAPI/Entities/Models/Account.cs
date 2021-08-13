@@ -35,7 +35,7 @@ namespace Entities.Models
         [Range(0, 9999)]
         public float PromotionalPoins { get; set; } = 0F;
 
-        [Required(ErrorMessage = "Role is a required field.")]
+        [NotMapped]
         public string Role { get; set; } = "Customer";
     }
 }
