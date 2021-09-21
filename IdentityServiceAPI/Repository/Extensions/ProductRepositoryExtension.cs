@@ -1,8 +1,12 @@
 ﻿using Entities.Models;
+using Repository.Extensions.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Repository.Extensions
 {
@@ -18,14 +22,69 @@ namespace Repository.Extensions
             return products.Where(e => e.ProductType.ProductTypeName.ToLower().Equals(lowerCaseTerm));
         }
 
-       /* public static IQueryable<Product> Search(this IQueryable<Product> products, string searchTerm)
+        public static IQueryable<Product> Sort(this IQueryable<Product> products, string orderByQueryString)
+        {
+            if (string.IsNullOrWhiteSpace(orderByQueryString))
+            {
+                return products.OrderBy(e => e.ProductName);
+            }
+
+            var orderQuery = OrderQueryBuilder.CreateOrderQuery<Product>(orderByQueryString);
+
+            if (string.IsNullOrWhiteSpace(orderQuery))
+            {
+                return products.OrderBy(e => e.ProductName);
+            }
+
+            return products.OrderBy(orderQuery);
+        }
+
+        public static IQueryable<Product> Search(this IQueryable<Product> products, string searchTerm)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))
+            {
                 return products;
+            }
 
-            var lowerCaseTerm = searchTerm.Trim().ToLower();
+            var propertyInfos = typeof(Product).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            return products.Where(e => e.ProductType.ProductTypeName.ToLower().Contains(lowerCaseTerm));
-        }*/
+            foreach (var product in products)
+            {
+                int propertyCount = 0;
+                foreach (var property in propertyInfos)
+                {
+                    object value = property.GetValue(product, null);
+                    if (value != null)
+                    {
+                        Regex regex = new Regex("^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$");
+                        Match match = regex.Match(value.ToString());
+                        if (!regex.Match(value.ToString()).Success)
+                        {
+                            if (!value.ToString().ToLower().Contains(searchTerm.Trim().ToLower()))
+                            {
+                                propertyCount++;
+                            }
+                        }
+                        else
+                        {
+                            propertyCount++;
+                        }
+                    }
+                    else
+                    {
+                        propertyCount++;
+                    }
+                }
+
+                if (propertyCount == propertyInfos.Length)
+                {
+                    products = products.Where(e => e.ProductID != product.ProductID);
+                }
+            }
+
+            return products;
+
+            //return accounts.Where(e => e.UserName.ToLower().Contains(searchTerm.Trim().ToLower()));
+        }
     }
 }

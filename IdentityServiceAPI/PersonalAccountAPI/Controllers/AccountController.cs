@@ -42,13 +42,15 @@ namespace PersonalAccountAPI.Controllers
         /// <returns>The list of Accounts</returns>
         [HttpGet("all", Name = "GetAccounts")]
         [Authorize(Roles = "Admin")]
-        public async Task<IEnumerable<Account>> GetAccounts([FromQuery] AccountParameters parameters)
+        public async Task<IActionResult> GetAccounts([FromQuery] AccountParameters parameters)
         {
             var accounts = await _repository.AccountRepository.GetAccountsAsync(parameters, trackChanges: false);
 
-            //Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(accounts.MetaData));
-
-            return accounts;
+            return Ok(new
+            {
+                Accounts = accounts,
+                TotalCount = accounts.MetaData.TotalCount
+            });
         }
 
         /// <summary>
@@ -123,7 +125,7 @@ namespace PersonalAccountAPI.Controllers
 
                 await _repository.SaveAsync();
 
-                return Ok("Account was deleted");
+                return Ok();
             }
             else
             {
@@ -161,7 +163,7 @@ namespace PersonalAccountAPI.Controllers
 
                 await _repository.SaveAsync();
 
-                return Ok("Account was updated");
+                return Ok();
             }
             else
             {
@@ -184,7 +186,7 @@ namespace PersonalAccountAPI.Controllers
                 _repository.AccountRepository.CreateAccount(account);
 
                 await _repository.SaveAsync();
-                return Ok("Account was created");
+                return Ok();
             }
             else
             {

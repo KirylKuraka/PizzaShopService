@@ -34,13 +34,15 @@ namespace ProductAPI.Controllers
         /// <param name="parameters">Input parameters such as page size and page number</param>
         /// <returns>The list of Products</returns>
         [HttpGet(Name = "GetProducts")]
-        public async Task<IEnumerable<Product>> GetProducts([FromQuery] ProductParameters parameters)
+        public async Task<IActionResult> GetProducts([FromQuery] ProductParameters parameters)
         {
             var products = await _repository.ProductRepository.GetProductsAsync(parameters, trackChanges: false);
 
-            //Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.MetaData));
-
-            return products;
+            return Ok(new
+            {
+                Products = products,
+                TotalCount = products.MetaData.TotalCount
+            });
         }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace ProductAPI.Controllers
         /// <returns>String message about execution status</returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<string> CreateProduct([FromBody] Product product)
+        public async Task<IActionResult> CreateProduct([FromBody] Product product)
         {
             try
             {
@@ -79,12 +81,12 @@ namespace ProductAPI.Controllers
                 _repository.ProductRepository.CreateProduct(productEntity);
                 await _repository.SaveAsync();
 
-                return "Product was created";
+                return Ok();
             }
             catch (Exception e)
             {
                 _logger.LogError($"{e.Message}");
-                return $"{e.Message}";
+                return NotFound($"{e.Message}");
             }
         }
 
@@ -95,21 +97,21 @@ namespace ProductAPI.Controllers
         /// <returns>String message about execution status</returns>
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<string> DeleteProduct(Guid id)
+        public async Task<IActionResult> DeleteProduct(Guid id)
         {
             var product = await _repository.ProductRepository.GetProductAsync(id, false);
 
             if (product == null)
             {
                 _logger.LogInfo($"Product with id: {id} doesn't exist in database");
-                return $"Product with id: {id} doesn't exist in database";
+                return NotFound($"Product with id: {id} doesn't exist in database");
             }
 
             _repository.ProductRepository.DeleteProduct(product);
 
             await _repository.SaveAsync();
 
-            return "Product was deleted";
+            return Ok();
         }
 
         /// <summary>
@@ -120,7 +122,7 @@ namespace ProductAPI.Controllers
         /// <returns>String message about execution status</returns>
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<string> UpdateProduct(Guid id, [FromBody] Product product)
+        public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] Product product)
         {
             if (await _repository.ProductRepository.GetProductAsync(id, trackChanges: false) != null)
             {
@@ -128,12 +130,12 @@ namespace ProductAPI.Controllers
 
                 await _repository.SaveAsync();
 
-                return "Product was updated";
+                return Ok();
             }
             else
             {
                 _logger.LogInfo($"Product with id: {id} doesn't exist in database");
-                return $"Product with id: {id} doesn't exist in database";
+                return NotFound($"Product with id: {id} doesn't exist in database");
             }
         }
     }

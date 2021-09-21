@@ -20,5 +20,8 @@ namespace Entities.RequestFeatures.Parameters
                 _pageSize = (value > maxPageSize) ? maxPageSize : value;
             }
         }
+
+        public string OrderBy { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

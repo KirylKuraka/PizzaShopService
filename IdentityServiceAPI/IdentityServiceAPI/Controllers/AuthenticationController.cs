@@ -127,6 +127,13 @@ namespace IdentityServiceAPI.Controllers
             });
         }
 
+        /// <summary>
+        /// Get refresh settings form configuration file
+        /// </summary>
+        /// <param name="providerName">Provider name</param>
+        /// <param name="refreshTokenName">Refresh token field name</param>
+        /// <param name="refreshTokenExpiryTimeName">Refresh token expiry time field name</param>
+        /// <param name="expiryTime">Refresh token expiry time</param>
         private void GetRefreshSettings(out string providerName, out string refreshTokenName, out string refreshTokenExpiryTimeName, out string expiryTime)
         {
             var refreshSettings = _configuration.GetSection("RefreshTokenSettings");
@@ -136,6 +143,11 @@ namespace IdentityServiceAPI.Controllers
             expiryTime = _configuration.GetSection("JwtSettings").GetSection("expires").Value;
         }
 
+        /// <summary>
+        /// Create new token and refresh token
+        /// </summary>
+        /// <param name="tokenModel">Token model that includes old token and old refresh token</param>
+        /// <returns>token and refresh token</returns>
         [HttpPost]
         [Route("refresh")]
         public async Task<IActionResult> Refresh(TokenModel tokenModel)
@@ -189,6 +201,10 @@ namespace IdentityServiceAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete refresh token
+        /// </summary>
+        /// <returns></returns>
         [HttpPost, Authorize]
         [Route("revoke")]
         public async Task<IActionResult> Revoke()
