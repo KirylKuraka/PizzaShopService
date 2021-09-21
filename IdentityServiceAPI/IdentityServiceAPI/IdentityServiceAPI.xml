@@ -35,6 +35,28 @@
              <param name="user">User info for authentication</param>
              <returns>Request status</returns>
         </member>
+        <member name="M:IdentityServiceAPI.Controllers.AuthenticationController.GetRefreshSettings(System.String@,System.String@,System.String@,System.String@)">
+            <summary>
+            Get refresh settings form configuration file
+            </summary>
+            <param name="providerName">Provider name</param>
+            <param name="refreshTokenName">Refresh token field name</param>
+            <param name="refreshTokenExpiryTimeName">Refresh token expiry time field name</param>
+            <param name="expiryTime">Refresh token expiry time</param>
+        </member>
+        <member name="M:IdentityServiceAPI.Controllers.AuthenticationController.Refresh(Entities.Models.TokenModel)">
+            <summary>
+            Create new token and refresh token
+            </summary>
+            <param name="tokenModel">Token model that includes old token and old refresh token</param>
+            <returns>token and refresh token</returns>
+        </member>
+        <member name="M:IdentityServiceAPI.Controllers.AuthenticationController.Revoke">
+            <summary>
+            Delete refresh token
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:IdentityServiceAPI.Controllers.AuthenticationController.GetUserRoles(System.String)">
             <summary>
             Get user roles by userID

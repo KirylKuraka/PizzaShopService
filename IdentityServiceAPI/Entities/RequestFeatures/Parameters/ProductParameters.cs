@@ -6,6 +6,11 @@ namespace Entities.RequestFeatures.Parameters
 {
     public class ProductParameters : RequestParameters
     {
+        public ProductParameters()
+        {
+            OrderBy = "ProductName";
+            SearchTerm = "";
+        }
         public string FilterTerm { get; set; }
     }
 }

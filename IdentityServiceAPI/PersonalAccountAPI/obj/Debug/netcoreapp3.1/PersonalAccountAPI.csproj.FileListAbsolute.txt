@@ -173,3 +173,4 @@ C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\PersonalAccoun
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\PersonalAccountAPI\obj\Debug\netcoreapp3.1\PersonalAccountAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\PersonalAccountAPI\bin\Debug\netcoreapp3.1\PersonalAccountAPI.xml
 C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\PersonalAccountAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\user\Desktop\Projects\PizzaOnlineShop\IdentityServiceAPI\PersonalAccountAPI\bin\Debug\netcoreapp3.1\System.Linq.Dynamic.Core.dll

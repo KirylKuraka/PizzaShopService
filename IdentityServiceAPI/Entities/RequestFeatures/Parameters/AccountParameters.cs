@@ -6,5 +6,10 @@ namespace Entities.RequestFeatures.Parameters
 {
     public class AccountParameters : RequestParameters
     {
+        public AccountParameters()
+        {
+            OrderBy = "UserName";
+            SearchTerm = "";
+        }
     }
 }
