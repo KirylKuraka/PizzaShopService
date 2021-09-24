@@ -40,31 +40,7 @@ namespace Repository.Extensions
 
             foreach (var account in accounts)
             {
-                int propertyCount = 0;
-                foreach (var property in propertyInfos)
-                {
-                    object value = property.GetValue(account, null);
-                    if (value != null)
-                    {
-                        Regex regex = new Regex("^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$");
-                        Match match = regex.Match(value.ToString());
-                        if (!regex.Match(value.ToString()).Success)
-                        {
-                            if (!value.ToString().ToLower().Contains(searchTerm.Trim().ToLower()))
-                            {
-                                propertyCount++;
-                            }
-                        }
-                        else
-                        {
-                            propertyCount++;
-                        }
-                    }
-                    else
-                    {
-                        propertyCount++;
-                    }
-                }
+                int propertyCount = SearchService.SearchByProperties<Account>(searchTerm, propertyInfos, account);
 
                 if (propertyCount == propertyInfos.Length)
                 {
@@ -73,8 +49,6 @@ namespace Repository.Extensions
             }
 
             return accounts;
-
-            //return accounts.Where(e => e.UserName.ToLower().Contains(searchTerm.Trim().ToLower()));
         }
     }
 }

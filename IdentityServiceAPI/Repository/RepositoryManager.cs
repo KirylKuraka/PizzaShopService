@@ -13,6 +13,12 @@ namespace Repository
         private IAccountRepository _accountRepository;
         private IProductTypeRepository _productTypeRepository;
         private IProductRepository _productRepository;
+        private ICustomerRepository _customerRepository;
+        private IDeliveryMethodRepository _deliveryMethodRepository;
+        private IOrderedProductRepository _orderedProductRepository;
+        private IOrderRepository _orderRepository;
+        private IOrderStatusRepository _orderStatusRepository;
+        private IPaymentMethodRepository _paymentMethodRepository;
 
         public RepositoryManager(RepositoryContext repositoryContext)
         {
@@ -47,6 +53,66 @@ namespace Repository
                 if (_productRepository == null)
                     _productRepository = new ProductRepository(_repositoryContext);
                 return _productRepository;
+            }
+        }
+
+        public ICustomerRepository CustomerRepository
+        {
+            get
+            {
+                if (_customerRepository == null)
+                    _customerRepository = new CustomerRepository(_repositoryContext);
+                return _customerRepository;
+            }
+        }
+
+        public IDeliveryMethodRepository DeliveryMethodRepository
+        {
+            get
+            {
+                if (_deliveryMethodRepository == null)
+                    _deliveryMethodRepository = new DeliveryMethodRepository(_repositoryContext);
+                return _deliveryMethodRepository;
+            }
+        }
+
+        public IOrderedProductRepository OrderedProductRepository
+        {
+            get
+            {
+                if (_orderedProductRepository == null)
+                    _orderedProductRepository = new OrderedProductRepository(_repositoryContext);
+                return _orderedProductRepository;
+            }
+        }
+
+        public IOrderRepository OrderRepository
+        {
+            get
+            {
+                if (_orderRepository == null)
+                    _orderRepository = new OrderRepository(_repositoryContext);
+                return _orderRepository;
+            }
+        }
+
+        public IOrderStatusRepository OrderStatusRepository
+        {
+            get
+            {
+                if (_orderStatusRepository == null)
+                    _orderStatusRepository = new OrderStatusRepository(_repositoryContext);
+                return _orderStatusRepository;
+            }
+        }
+
+        public IPaymentMethodRepository PaymentMethodRepository
+        {
+            get
+            {
+                if (_paymentMethodRepository == null)
+                    _paymentMethodRepository = new PaymentMethodRepository(_repositoryContext);
+                return _paymentMethodRepository;
             }
         }
 
