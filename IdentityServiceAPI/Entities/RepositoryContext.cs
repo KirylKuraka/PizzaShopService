@@ -21,6 +21,9 @@ namespace Entities
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new DeliveryMethodConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentMethodConfiguration());
         }
 
         public DbSet<Account> Accounts { get; set; }

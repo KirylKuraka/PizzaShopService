@@ -10,6 +10,12 @@ namespace Contracts
         IAccountRepository AccountRepository { get; }
         IProductRepository ProductRepository { get; }
         IProductTypeRepository ProductTypeRepository { get; }
+        ICustomerRepository CustomerRepository { get; }
+        IDeliveryMethodRepository DeliveryMethodRepository { get; }
+        IOrderedProductRepository  OrderedProductRepository { get; }
+        IOrderRepository OrderRepository { get; }
+        IOrderStatusRepository OrderStatusRepository { get; }
+        IPaymentMethodRepository PaymentMethodRepository { get; }
         Task SaveAsync();
     }
 }
